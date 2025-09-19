@@ -12,15 +12,34 @@ pip install -r requirements.txt
 
 ```
 TuneAhead/
+├── requirements.txt 
 ├── features/              # Feature extraction modules
 │   ├── extract_static.py  # Static dataset descriptors
 │   ├── extract_dynamic.py # Dynamic probe signals
 │   └── __init__.py
-├── train.py               # Main training script for predictors
-├── evaluate.py            # Evaluation and metric reporting
-├── plots/                 # Visualization scripts (grid plots, SHAP, calibration)
-├── data/                  # Example subset of the meta-dataset (CSV format)
-├── utils/                 # Helper functions (data loading, calibration, conformal)
+├── run.sh                  # Example script for training & evaluation
+├── configs/
+│   └── main.yaml           # Default configuration
+├── data/
+│   └── README_DATA.md
+│   ├── sample_metadataset.csv 
+└── src/
+    ├── io_utils.py         # Data I/O helpers
+    ├── utils.py            # General utilities
+    ├── splitters.py        # Dataset splitting
+    ├── metrics.py          # Evaluation metrics
+    ├── conformal.py        # (Optional) conformal calibration
+    ├── plots.py            # Visualization helpers (grid, SHAP, calibration)
+    ├── train.py            # Main training script
+    ├── models/
+    │   ├── lightgbm_reg.py # Gradient boosting predictor
+    │   ├── baselines.py    # Baseline models (ProxyLM, scaling-law, etc.)
+    │   └── calibrate.py    # Isotonic/Platt calibration
+    ├── features/
+    │   ├── build_views.py  # Dynamic probe features
+    │   └── static_rules.py # Static dataset descriptors
+    └── interpret/
+        └── shap_global.py  # SHAP-based interpretability
 └── README.md
 ```
 
@@ -43,13 +62,10 @@ Code for feature extraction is under `features/`:
 Both modules output CSV files that match the input format expected by `train.py`.
 
 ## 🚀 Training & Evaluation
-
+Example usage (see run.sh for more):
 ```bash
 # Train predictor
-python train.py --config configs/default.yaml
-
-# Evaluate predictor
-python evaluate.py --checkpoint checkpoints/model.pkl
+bash run.sh
 ```
 
 ## 📈 Visualization
