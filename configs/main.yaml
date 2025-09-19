@@ -2,8 +2,8 @@ seed: 36
 output_dir: outputs/
 
 data:
-  meta_csv: data/sample_meta_dataset.csv
-  proxy_csv: data/sample_proxylm_scores.csv
+  meta_csv: data/metadataset_sample.csv
+  proxy_csv: data/proxylm_scores_sample.csv
   key_cols: ["dataset_name"]
 
 target: overall_accuracy
@@ -15,7 +15,6 @@ split:
   cal_ratio: 0.12
 
 conformal:
-  target_coverage: 0.85
 
 model:
   lgbm:

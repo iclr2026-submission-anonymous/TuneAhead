@@ -22,7 +22,7 @@ TuneAhead/
 │   └── main.yaml           # Default configuration
 ├── data/
 │   └── README_DATA.md
-│   ├── sample_metadataset.csv 
+│   ├── metadataset_sample.csv 
 └── src/
     ├── io_utils.py         # Data I/O helpers
     ├── utils.py            # General utilities
@@ -36,8 +36,8 @@ TuneAhead/
     │   ├── baselines.py    # Baseline models (ProxyLM, scaling-law, etc.)
     │   └── calibrate.py    # Isotonic/Platt calibration
     ├── features/
-    │   ├── build_views.py  # Dynamic probe features
-    │   └── static_rules.py # Static dataset descriptors
+    │   ├── build_views.py  # Build design matrices (X_all/X_proxy/y) from merged CSV; no feature computation
+    │   └── static_rules.py # Heuristically partition columns into static/dynamic/hyper groups for ablations
     └── interpret/
         └── shap_global.py  # SHAP-based interpretability
 └── README.md
