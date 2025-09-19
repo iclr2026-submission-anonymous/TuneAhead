@@ -15,6 +15,7 @@ split:
   cal_ratio: 0.12
 
 conformal:
+  target_coverage: 0.86
 
 model:
   lgbm:
