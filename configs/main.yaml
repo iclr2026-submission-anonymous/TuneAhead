@@ -1,0 +1,27 @@
+seed: 36
+output_dir: outputs/
+
+data:
+  meta_csv: data/sample_meta_dataset.csv
+  proxy_csv: data/sample_proxylm_scores.csv
+  key_cols: ["dataset_name"]
+
+target: overall_accuracy
+
+split:
+  use_group: false     # set true if you want group split by dataset_name
+  test_size: 0.28
+  val_ratio: 0.14
+  cal_ratio: 0.12
+
+conformal:
+  target_coverage: 0.85
+
+model:
+  lgbm:
+    learning_rate: 0.05
+    n_estimators: 140
+    num_leaves: 4
+    min_child_samples: 20
+    subsample: 0.6
+    colsample_bytree: 0.6
