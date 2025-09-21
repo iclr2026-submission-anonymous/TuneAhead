@@ -1,0 +1,45 @@
+# MMLU LoRA Training & Feature Extraction System Requirements
+# Generated for /root/exp/src/exp_code project
+
+# Core ML/AI Libraries
+torch>=2.1.0,<2.3.0
+transformers>=4.44.0,<4.47.0
+peft>=0.8.0,<0.9.0
+bitsandbytes>=0.43.0,<0.44.0
+
+# Data Processing & Analysis
+numpy==1.26.4                    # Numerical computations
+pandas==2.2.2                    # Data manipulation and analysis
+scikit-learn==1.4.2              # Machine learning algorithms
+lightgbm==4.3.0                  # Gradient boosting framework
+matplotlib==3.8.4                # Plotting and visualization
+seaborn==0.13.2                  # Statistical data visualization
+pyyaml==6.0.1                    # YAML configuration files
+shap==0.45.1                     # Model interpretability
+
+# Progress & Utilities
+tqdm>=4.66.0,<4.68.0
+python-dotenv>=1.0.0,<1.1.0
+
+# Standard Library Extensions (if needed)
+# Note: os, json, ast, logging, random, datetime, csv, subprocess, time, pathlib, gc, re, string, math, collections are built-in Python modules
+
+# Optional: For development and testing
+# pytest>=7.4.0,<7.5.0
+# jupyter>=1.0.0,<1.1.0
+
+# Installation Notes:
+# 1. Install PyTorch with CUDA support if using GPU:
+#    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+# 2. For CPU-only installation:
+#    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+# 3. Install all requirements:
+#    pip install -r requirements.txt
+# 4. For LightGBM on Windows, may need Visual C++ Build Tools
+# 5. For SHAP, ensure compatible versions of numpy and scipy
+
+# Compatibility Notes:
+# - Python 3.8+ required
+# - CUDA 11.8+ recommended for GPU support
+# - 20GB+ GPU memory recommended for large models
+# - Tested on Ubuntu 20.04+ and similar Linux distributions
