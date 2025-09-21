@@ -127,7 +127,7 @@ Static Feature Extraction → Dynamic Feature Extraction → Feature Merging →
 ## 📁 File Structure
 
 ```
-/root/exp/data/exp_code/
+/root/exp/exp_code/
 ├── 📁 Main Control Layer
 │   ├── batch_mmlu_eval.py      # Batch MMLU evaluation controller
 │   ├── auto_mmlu_eval.py      # Automated experiment orchestrator
@@ -461,7 +461,7 @@ PYTORCH_CUDA_ALLOC_CONF="max_split_size_mb:512"
 ```bash
 # Project root structure
 /root/exp/
-├── data/exp_code/                    # This system
+├── exp_code/                    # This system
 ├── train_data/
 │   └── merged_datasets/             # Training datasets
 │       ├── chunk_001/               # Dataset folder 1
