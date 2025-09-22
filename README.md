@@ -13,10 +13,16 @@ pip install -r requirements.txt
 ```
 TuneAhead/
 ├── requirements.txt 
-├── features/              # Feature extraction modules
-│   ├── extract_static.py  # Static dataset descriptors
-│   ├── extract_dynamic.py # Dynamic probe signals
-│   └── __init__.py
+├── preprocessing/              # Get Ground Truth and Feature extraction
+│   ├── Feature Extraction Layer
+│        ├── feature_pipeline.py       # Unified pipeline
+│        ├── static_features.py        # Static features
+│        ├── dynamic_probes.py         # Dynamic features
+│        └── pipe_folder_to_csv_isolated.py  # Isolated processing
+│   ├── batch_mmlu_eval.py      # Batch MMLU evaluation controller
+│   ├── auto_mmlu_eval.py      # Automated experiment orchestrator
+│   ├── evaluate_model.py      # Model evaluation module
+│   └── train_model.py         # LoRA training module
 ├── run.sh                  # Example script for training & evaluation
 ├── configs/
 │   └── main.yaml           # Default configuration
@@ -84,6 +90,28 @@ python plots/plot_grid.py --input results/predictions.csv
 
 ---
 
+## 🔮 Using Pretrained Model
+
+We provide a pretrained **TuneAhead (Full)** LightGBM model in `models/model_TuneAhead_Full.txt`,  
+which can be used to directly predict fine-tuning performance for new datasets.
+
+### 1. Prepare your dataset
+- Input format: **CSV** file containing the same static and dynamic features used in our paper.  
+- You may optionally include identifier columns (e.g., `dataset_name`, `run_id`) and ground-truth labels (e.g., `overall_accuracy`) for comparison.  
+- Example: `data/sample_metadataset.csv`
+
+### 2. Run prediction
+```bash
+# Minimal usage: only specify your CSV file
+python src/predict.py --data-csv data/sample_metadataset.csv
+
+# With additional options
+python src/predict.py \
+  --model-txt models/model_TuneAhead_Full.txt \
+  --data-csv data/sample_metadataset.csv \
+  --id-cols dataset_name run_id \
+  --label-col overall_accuracy \
+  --out-csv results/predictions.csv
 ## 📜 License & Notes
 
 - Full-scale meta-datasets are **not released** due to license/privacy constraints and because they remain part of ongoing research.  

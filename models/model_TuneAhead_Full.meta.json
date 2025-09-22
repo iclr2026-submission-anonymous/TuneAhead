@@ -1,0 +1,53 @@
+{
+  "name": "TuneAhead_Full",
+  "model_class": "LGBMRegressor",
+  "timestamp": "2025-09-22T02:35:11",
+  "target": "overall_accuracy",
+  "feature_names": [
+    "dataset_num_items",
+    "dataset_total_chars",
+    "approximate_duplicates",
+    "avg_activation_sparsity",
+    "avg_grad_norm",
+    "avg_grad_sparsity",
+    "avg_input_length",
+    "avg_output_length",
+    "avg_param_change",
+    "base_model_perplexity",
+    "base_perplexity_std",
+    "catastrophic_forgetting",
+    "embedding_outlier_ratio",
+    "gradient_consistency",
+    "initial_loss",
+    "input_length_std",
+    "input_ttr",
+    "io_length_ratio",
+    "io_similarity",
+    "landscape_flatness",
+    "loss_decay_rate",
+    "loss_stability",
+    "output_length_std",
+    "output_ngram_repetition",
+    "output_ttr",
+    "reference_perplexity",
+    "reference_perplexity_std",
+    "semantic_consistency",
+    "special_char_ratio",
+    "static_coverage",
+    "static_skipped_count",
+    "static_valid_count",
+    "vocab_complexity"
+  ],
+  "train_size": 204,
+  "val_size": 68,
+  "notes": "\u52a0\u8f7d\u540e\u8bf7\u4e25\u683c\u6309 feature_names \u7684\u987a\u5e8f\u6784\u9020 DataFrame \u8fdb\u884c\u9884\u6d4b\u3002",
+  "conformal": {
+    "target_coverage": 0.86,
+    "q_abs_resid": 0.04913954008081087
+  },
+  "version": "full",
+  "split_protocol": {
+    "protocol": "Random",
+    "seed": 36
+  }
+}
