@@ -8,6 +8,8 @@ cd tuneahead-anonymous
 pip install -r requirements.txt
 ```
 
+
+
 ## 📂 Repository Structure
 
 ```
@@ -26,9 +28,13 @@ TuneAhead/
 ├── run.sh                  # Example script for training & evaluation
 ├── configs/
 │   └── main.yaml           # Default configuration
+├── model/
+│   ├──  models/Qwen/Qwen2.5-7B-Instruct-1M
+│   └──  download_qwen.py
 ├── data/
-│   └── README_DATA.md
-│   ├── metadataset_sample.csv 
+│   ├── README_DATA.md
+│   ├── mmlu_dataset/test_all_subjects.json
+│   ├── train_data/chunk_001/*.json
 └── src/
     ├── io_utils.py         # Data I/O helpers
     ├── utils.py            # General utilities
@@ -48,6 +54,28 @@ TuneAhead/
         └── shap_global.py  # SHAP-based interpretability
 └── README.md
 ```
+### 📥 Download Model (Qwen)
+
+```bash
+python model/download_qwen.py
+```
+## 🧩 Two Subsystems
+
+- Training & Evaluation (LoRA + MMLU)
+  - Purpose: LoRA fine-tuning with MMLU evaluation; supports batch and single experiments.
+  - Run :
+    ```bash
+    MODEL_NAME="model/models/Qwen/Qwen2.5-7B-Instruct-1M" DATA_FOLDER="data/train_data/chunk_001" MMLU_PATH="data/mmlu_dataset/test_all_subjects.json" python preprocessing/batch_mmlu_eval.py
+    ```
+
+
+- Feature Extraction (Static + Dynamic)
+  - Purpose: Extract static features (text stats, semantics, perplexity) and dynamic features (early fine-tuning signals); output unified CSV.
+  - Run :
+    ```bash
+    mkdir -p results && python -m preprocessing.pipe_folder_to_csv_isolated --data_folder data/train_data/chunk_001 --model_path model/models/Qwen/Qwen2.5-7B-Instruct-1M --output_csv results/features_chunk_001.csv --sample_size 100 --batch_size 1 --probe_steps 20
+    # Note: set --sample_size 0 to use the entire dataset.
+    ```
 
 ## 📊 Data
 
@@ -112,7 +140,9 @@ python src/predict.py \
   --id-cols dataset_name run_id \
   --label-col overall_accuracy \
   --out-csv results/predictions.csv
+```
+
 ## 📜 License & Notes
 
 - Full-scale meta-datasets are **not released** due to license/privacy constraints and because they remain part of ongoing research.  
-- All released code is anonymized and stripped of sensitive components for ICLR review.  
+- All released code is anonymized and stripped of sensitive components for ICLR review.
